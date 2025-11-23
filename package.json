@@ -1,5 +1,5 @@
 {
-  "name": "codezest-api",
+  "name": "@codezest-academy/codezest-api",
   "version": "1.0.0",
   "description": "CodeZest Learning Service - Manages programming languages, modules, materials, assignments, and quizzes",
   "main": "dist/index.js",
@@ -18,9 +18,9 @@
     "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\"",
     "format:check": "prettier --check \"src/**/*.ts\" \"tests/**/*.ts\"",
     "typecheck": "tsc --noEmit",
-    "migrate:dev": "npx prisma migrate dev --schema=node_modules/@codezest-academy/db/prisma/schema.prisma",
-    "migrate:deploy": "npx prisma migrate deploy --schema=node_modules/@codezest-academy/db/prisma/schema.prisma",
-    "db:generate": "npx prisma generate --schema=node_modules/@codezest-academy/db/prisma/schema.prisma",
+    "migrate:dev": "npx prisma migrate dev --schema=node_modules/@codezest-academy/codezest-db/prisma/schema.prisma",
+    "migrate:deploy": "npx prisma migrate deploy --schema=node_modules/@codezest-academy/codezest-db/prisma/schema.prisma",
+    "db:generate": "npx prisma generate --schema=node_modules/@codezest-academy/codezest-db/prisma/schema.prisma",
     "db:seed": "ts-node scripts/seed.ts",
     "prepare": "husky install"
   },
@@ -36,8 +36,10 @@
   "author": "CodeZest Academy",
   "license": "MIT",
   "dependencies": {
-    "@codezest-academy/db": "^1.0.4",
+    "@codezest-academy/codezest-cache": "^1.0.1",
+    "@codezest-academy/codezest-db": "^1.0.5",
     "bcryptjs": "^2.4.3",
+    "chalk": "^5.3.0",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
@@ -47,12 +49,11 @@
     "helmet": "^7.1.0",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
+    "strip-ansi": "^7.0.1",
     "swagger-ui-express": "^5.0.0",
     "tsoa": "^5.1.1",
     "winston": "^3.11.0",
-    "zod": "^3.22.4",
-    "chalk": "^5.3.0",
-    "strip-ansi": "^7.0.1"
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",

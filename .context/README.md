@@ -1,159 +1,58 @@
-# .context - Planning & Context Files
+# 📚 CodeZest Context & Documentation
 
-This folder contains all planning, design, and progress tracking documents for the `@codezest/db` package.
-
----
-
-## 📋 Files in This Folder
-
-### 1. **PLAN_OVERVIEW.md** (26KB)
-**Purpose**: Complete database schema design with all 30 models  
-**Use**: Reference for schema details, relationships, and examples  
-**Audience**: Developers implementing the schema
-
-**Contains**:
-- Complete data model (Auth, Learning, Payments, Notifications, Activity)
-- Prisma schema examples for each model
-- User journey examples
-- Database models summary
-- Key enums and relationships
+Welcome to the documentation hub for the `codezest-api` service and the broader CodeZest platform. This folder is organized to help you find information quickly based on your needs.
 
 ---
 
-### 2. **IMPLEMENTATION.md** (9.5KB)
-**Purpose**: Step-by-step implementation checklist  
-**Use**: Track what needs to be built and in what order  
-**Audience**: Developers implementing the package
+## 📂 Documentation Structure
 
-**Contains**:
-- 16 files to create
-- 30 models breakdown by service
-- 12 enums to define
-- 8 implementation steps
-- Success criteria
-- Reference documents
+### 1. [📍 This Repository (`this-repo/`)](./this-repo/)
 
----
+**Focus**: Specifics of the `codezest-api` microservice.
+_Start here if you are working on this specific service._
 
-### 3. **PROGRESS.md** (6.7KB)
-**Purpose**: Real-time progress tracking and session notes  
-**Use**: Resume work across sessions, track completion  
-**Audience**: AI agents and developers (especially for rate-limited sessions)
+- **[01-QUICK_START.md](./this-repo/01-QUICK_START.md)** - 🚀 **Start Here**: Run the project in 5 minutes
+- **[02-PROJECT_STRUCTURE.md](./this-repo/02-PROJECT_STRUCTURE.md)** - 🗺️ File layout and organization
+- **[03-ARCHITECTURE.md](./this-repo/03-ARCHITECTURE.md)** - 🏗️ Clean Architecture implementation details
+- **[04-API_ENDPOINTS.md](./this-repo/04-API_ENDPOINTS.md)** - 🔌 API reference and endpoints
+- **[05-SWAGGER_SETUP.md](./this-repo/05-SWAGGER_SETUP.md)** - 📖 How API documentation is generated
+- **[06-PROGRESS.md](./this-repo/06-PROGRESS.md)** - 📊 Current development status and checklist
+- **[07-PROJECT_SUMMARY.md](./this-repo/07-PROJECT_SUMMARY.md)** - 📈 Metrics, stats, and high-level status
+- **[99-TROUBLESHOOTING.md](./this-repo/99-TROUBLESHOOTING.md)** - 🔧 Fixes for common issues (Prisma, etc.)
 
-**Contains**:
-- Overall progress (Planning 100%, Implementation 0%)
-- Completed tasks checklist
-- Pending tasks checklist
-- Session notes with timestamps
-- Update log
-- Metrics (files created, models defined)
-- Quick resume instructions
+### 2. [🌐 Project Wide (`project-wide/`)](./project-wide/)
 
----
+**Focus**: The broader CodeZest platform, database schemas, and architectural decisions.
+_Read these to understand the "Big Picture"._
 
-### 4. **UPDATES_SUMMARY.md** (10.8KB)
-**Purpose**: Summary of Payment microservice and AI/Manual Analysis additions  
-**Use**: Understand what was added beyond initial scope  
-**Audience**: Stakeholders and developers
+- **[01-PLATFORM_OVERVIEW.md](./project-wide/01-PLATFORM_OVERVIEW.md)** - 🌍 High-level platform architecture
+- **[02-DATABASE_SCHEMA.md](./project-wide/02-DATABASE_SCHEMA.md)** - 🗄️ **Crucial**: Complete database schema & models
+- **[03-DOMAIN_ARCHITECTURE.md](./project-wide/03-DOMAIN_ARCHITECTURE.md)** - 🧠 Domain-Driven Design principles
+- **[04-IMPLEMENTATION_ROADMAP.md](./project-wide/04-IMPLEMENTATION_ROADMAP.md)** - 🛣️ Master plan and phases
+- **[05-ARCHITECTURE_DECISIONS.md](./project-wide/05-ARCHITECTURE_DECISIONS.md)** - ⚖️ ADRs (Redis, etc.)
 
-**Contains**:
-- Payment microservice overview (4 models)
-- AI/Manual analysis system (2 models)
-- Updated architecture (5 microservices, 30 models)
-- Use cases and code examples
-- Deployment strategy
+### 3. [📘 Guides (`guides/`)](./guides/)
+
+**Focus**: How-to guides for shared packages and common tasks.
+_Reference these when you need to do specific integration tasks._
+
+- **[01-CONSUMING_DB_PACKAGE.md](./guides/01-CONSUMING_DB_PACKAGE.md)** - 📦 Using `@codezest-academy/codezest-db`
+- **[02-CONSUMING_CACHE_PACKAGE.md](./guides/02-CONSUMING_CACHE_PACKAGE.md)** - ⚡ Using Redis cache
+- **[03-REDIS_SETUP.md](./guides/03-REDIS_SETUP.md)** - 🛠️ Setting up Redis infrastructure
+- **[04-SCHEMA_UPDATES.md](./guides/04-SCHEMA_UPDATES.md)** - 🔄 How to modify the database schema
+- **[05-PACKAGE_MIGRATION.md](./guides/05-PACKAGE_MIGRATION.md)** - 🚚 Migration guides
 
 ---
 
-## 🎯 How to Use These Files
+## 🤖 For AI Agents
 
-### For New Developers
-1. Start with **PLAN_OVERVIEW.md** to understand the schema
-2. Read **UPDATES_SUMMARY.md** to see what was added
-3. Check **IMPLEMENTATION.md** for what needs to be built
-4. Use **PROGRESS.md** to see current status
+To get up to speed quickly, read these files in order:
 
-### For Resuming Work
-1. Read **PROGRESS.md** first (current state)
-2. Check **IMPLEMENTATION.md** for next unchecked item
-3. Refer to **PLAN_OVERVIEW.md** for schema details
-4. Update **PROGRESS.md** after completing tasks
-
-### For AI Agents (Rate Limited Sessions)
-```bash
-# Quick context retrieval
-cat .context/PROGRESS.md          # Current status
-cat .context/IMPLEMENTATION.md    # What's next
-cat .context/PLAN_OVERVIEW.md     # Schema details
-```
+1. `cat .context/this-repo/01-QUICK_START.md` (Setup)
+2. `cat .context/this-repo/06-PROGRESS.md` (Current Status)
+3. `cat .context/project-wide/02-DATABASE_SCHEMA.md` (Data Model)
+4. `cat .context/this-repo/03-ARCHITECTURE.md` (Code Pattern)
 
 ---
 
-## 📁 Folder Structure
-
-```
-codezest-db/
-├── .context/                      # 👈 You are here
-│   ├── README.md                  # This file
-│   ├── PLAN_OVERVIEW.md           # Complete schema design
-│   ├── IMPLEMENTATION.md          # Implementation checklist
-│   ├── PROGRESS.md                # Progress tracker
-│   └── UPDATES_SUMMARY.md         # Payment & analysis summary
-│
-├── package.json                   # (To be created)
-├── tsconfig.json                  # (To be created)
-├── .gitignore                     # (To be created)
-├── .npmignore                     # (To be created)
-├── README.md                      # (To be created)
-├── ARCHITECTURE.md                # (To be created)
-├── .env.example                   # (To be created)
-│
-├── prisma/
-│   └── schema.prisma              # (To be created)
-│
-└── src/
-    ├── index.ts                   # (To be created)
-    ├── types.ts                   # (To be created)
-    └── mongo/
-        ├── index.ts               # (To be created)
-        └── collections.ts         # (To be created)
-```
-
----
-
-## 🔄 When to Update
-
-### PLAN_OVERVIEW.md
-- When schema design changes
-- When new models are added
-- When relationships change
-
-### IMPLEMENTATION.md
-- When adding new files to create
-- When implementation steps change
-- When success criteria change
-
-### PROGRESS.md
-- After completing each task
-- After each work session
-- When blockers are resolved
-- When metrics change
-
-### UPDATES_SUMMARY.md
-- When major features are added
-- When architecture changes
-- When new microservices are added
-
----
-
-## 📝 Notes
-
-- These files are **not published** to npm (excluded in `.npmignore`)
-- These files **are committed** to git (for team context)
-- Keep these files **up to date** for seamless collaboration
-- Use these files for **onboarding** new team members
-
----
-
-**Last Updated**: 2025-11-21  
-**Status**: Planning complete, ready for implementation
+**Last Updated**: November 2025
