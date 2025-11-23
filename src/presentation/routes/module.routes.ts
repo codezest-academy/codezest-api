@@ -1,0 +1,35 @@
+import { Router } from 'express';
+import { ModuleController } from '../controllers/module.controller';
+import { authMiddleware } from '../../middleware/auth.middleware';
+import { requireRole } from '../../middleware/rbac.middleware';
+import { UserRole } from '@prisma/client';
+
+const router = Router();
+const controller = new ModuleController();
+
+/**
+ * Module Routes
+ * Base path: /api/v1/modules
+ */
+
+// Public routes
+router.get('/', controller.getAll);
+router.get('/language/:languageId', controller.getByLanguageId);
+router.get('/language/:languageId/slug/:slug', controller.getByLanguageAndSlug);
+router.get('/:id', controller.getById);
+
+// Protected routes (require authentication)
+router.post('/', authMiddleware, requireRole([UserRole.ADMIN, UserRole.USER]), controller.create);
+
+router.put('/:id', authMiddleware, requireRole([UserRole.ADMIN, UserRole.USER]), controller.update);
+
+router.delete('/:id', authMiddleware, requireRole([UserRole.ADMIN]), controller.delete);
+
+router.post(
+  '/language/:languageId/reorder',
+  authMiddleware,
+  requireRole([UserRole.ADMIN, UserRole.USER]),
+  controller.reorder
+);
+
+export default router;
