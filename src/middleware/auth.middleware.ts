@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import config from '../config';
 import { UnauthorizedError } from '../common/errors/unauthorized.error';
 import { UserRole } from '@prisma/client';
+import { logSecurityEvent, SecurityEvent } from '../utils/security-logger';
 
 /**
  * JWT Authentication Middleware
@@ -23,9 +24,12 @@ export const authMiddleware = async (
 
     const token = authHeader.substring(7); // Remove 'Bearer ' prefix
 
-    // Verify token
+    // Verify token with issuer and audience validation
     try {
-      const decoded = jwt.verify(token, config.jwt.secret) as {
+      const decoded = jwt.verify(token, config.jwt.secret, {
+        issuer: 'codezest-auth',
+        audience: 'codezest-api',
+      }) as {
         id: string;
         email: string;
         role: string;
@@ -41,7 +45,26 @@ export const authMiddleware = async (
       next();
     } catch (jwtError) {
       if (jwtError instanceof jwt.TokenExpiredError) {
+        logSecurityEvent(SecurityEvent.TOKEN_EXPIRED, {
+          ip: req.ip,
+          path: req.path,
+          method: req.method,
+        });
         throw new UnauthorizedError('Token expired');
+      }
+      if (jwtError instanceof jwt.JsonWebTokenError) {
+        const event = jwtError.message.includes('issuer')
+          ? SecurityEvent.INVALID_ISSUER
+          : jwtError.message.includes('audience')
+            ? SecurityEvent.INVALID_AUDIENCE
+            : SecurityEvent.INVALID_TOKEN;
+
+        logSecurityEvent(event, {
+          ip: req.ip,
+          path: req.path,
+          method: req.method,
+          error: jwtError.message,
+        });
       }
       throw new UnauthorizedError('Invalid token');
     }
@@ -66,7 +89,10 @@ export const optionalAuthMiddleware = async (
       const token = authHeader.substring(7);
 
       try {
-        const decoded = jwt.verify(token, config.jwt.secret) as {
+        const decoded = jwt.verify(token, config.jwt.secret, {
+          issuer: 'codezest-auth',
+          audience: 'codezest-api',
+        }) as {
           id: string;
           email: string;
           role: string;

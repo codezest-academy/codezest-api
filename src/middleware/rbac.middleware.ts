@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { ForbiddenError } from '../common/errors/forbidden.error';
 import { UnauthorizedError } from '../common/errors/unauthorized.error';
 import { UserRole } from '@prisma/client';
+import { logSecurityEvent, SecurityEvent } from '../utils/security-logger';
 
 /**
  * Role-Based Access Control Middleware
@@ -17,6 +18,14 @@ export const rbacMiddleware = (...allowedRoles: UserRole[]) => {
       const userRole = req.user.role;
 
       if (!allowedRoles.includes(userRole)) {
+        logSecurityEvent(SecurityEvent.FORBIDDEN_ACCESS, {
+          userId: req.user.id,
+          ip: req.ip,
+          path: req.path,
+          method: req.method,
+          userRole,
+          requiredRoles: allowedRoles.join(', '),
+        });
         throw new ForbiddenError(`Access denied. Required roles: ${allowedRoles.join(', ')}`);
       }
 
@@ -39,6 +48,14 @@ export const requireRole = (allowedRoles: UserRole[]) => {
       }
 
       if (!allowedRoles.includes(req.user.role)) {
+        logSecurityEvent(SecurityEvent.FORBIDDEN_ACCESS, {
+          userId: req.user.id,
+          ip: req.ip,
+          path: req.path,
+          method: req.method,
+          userRole: req.user.role,
+          requiredRoles: allowedRoles.join(', '),
+        });
         throw new ForbiddenError(`Access denied. Required roles: ${allowedRoles.join(', ')}`);
       }
 
