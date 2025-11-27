@@ -134,7 +134,7 @@ npm run typecheck        # TypeScript validation
 - **Swagger UI**: `http://localhost:8082/api/docs`
 - **Project Summary**: `PROJECT_SUMMARY.md`
 - **Progress**: `PROGRESS.md`
-- **Architecture**: `.context/PHASE2_DOMAIN_LAYER.md`
+- **Architecture**: `.context/this-repo/phase2-domain-layer.md`
 
 ---
 

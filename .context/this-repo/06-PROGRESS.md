@@ -255,6 +255,6 @@ None currently.
 
 ## 📚 Reference
 
-- **Implementation Plan**: See `.context/IMPLEMENTATION_PLAN.md`
-- **Database Schema**: See `.context/PLAN_OVERVIEW.md`
-- **API Reference**: See `.context/API.md`
+- **Implementation Plan**: See `.context/this-repo/implementation-plan.md`
+- **Database Schema**: See `.context/this-repo/plan-overview.md`
+- **API Reference**: See `.context/this-repo/api.md`

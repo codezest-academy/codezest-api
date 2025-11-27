@@ -820,9 +820,9 @@ npm run dev
 
 ## 📚 Reference Documents
 
-1. **PLAN_OVERVIEW.md** - Complete database schema (30 models)
-2. **API.md** - Auth service API reference
-3. **CONSUMING.md** - How to use `@codezest-academy/db`
+1. **plan-overview.md** - Complete database schema (30 models)
+2. **api.md** - Auth service API reference
+3. **consuming.md** - How to use `@codezest-academy/db`
 4. **Conversation History** - Previous implementation context
 
 ---

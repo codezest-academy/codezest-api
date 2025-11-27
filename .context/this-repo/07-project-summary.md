@@ -22,7 +22,7 @@ A production-ready Learning Platform API built with **Clean Architecture**, **Ty
 ## 📊 Phase Completion
 
 | Phase         | Status         | Progress | Description                        |
-| ------------- | -------------- | -------- | ---------------------------------- |
+| ------------- | -------------- | -------- | --------------- |
 | **Phase 1**   | ✅ Complete    | 100%     | Infrastructure, middleware, config |
 | **Phase 2**   | 🔄 In Progress | 70%      | Domain entities & repositories     |
 | **Phase 3**   | 🔄 In Progress | 33%      | Languages API complete             |
@@ -149,14 +149,14 @@ codezest-api/
 │   ├── routes/              # Main API routes
 │   ├── app.ts               # Express setup
 │   ├── server.ts            # HTTP server
-│   └── index.ts             # Entry point
+│   └── index.ts             # Main entry point
 ├── tests/
 │   ├── integration/         # 4 tests
 │   └── unit/                # 5 tests
 ├── .context/                # Documentation
-│   ├── PHASE2_DOMAIN_LAYER.md
-│   ├── SWAGGER_IMPLEMENTATION.md
-│   └── PRISMA_SETUP_ISSUE.md
+│   ├── phase2-domain-layer.md
+│   ├── swagger-implementation.md
+│   └── prisma-setup-issue.md
 └── PROGRESS.md              # Detailed tracking
 ```
 
@@ -250,9 +250,9 @@ npm run build         # Production build
 
 All documentation in `.context/`:
 
-- `PHASE2_DOMAIN_LAYER.md` - Domain architecture details
-- `SWAGGER_IMPLEMENTATION.md` - API documentation guide
-- `PRISMA_SETUP_ISSUE.md` - Troubleshooting Prisma
+- `phase2-domain-layer.md` - Domain architecture details
+- `swagger-implementation.md` - API documentation guide
+- `prisma-setup-issue.md` - Troubleshooting Prisma
 - `README.md` - Project overview
 
 ---
