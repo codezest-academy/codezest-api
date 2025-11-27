@@ -2,7 +2,6 @@ import express, { Application } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import compression from 'compression';
-import rateLimit from 'express-rate-limit';
 import 'express-async-errors';
 
 import config from './config';
@@ -38,6 +37,9 @@ const createApp = (): Application => {
   app.use(loggingMiddleware);
 
   // Rate limiting
+  // Note: For production with multiple instances, configure Redis-backed rate limiting
+  // See src/config/rate-limit.config.ts for Redis implementation
+  const rateLimit = require('express-rate-limit');
   const limiter = rateLimit({
     windowMs: config.rateLimit.windowMs,
     max: config.rateLimit.maxRequests,

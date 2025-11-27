@@ -71,7 +71,7 @@ const config: Config = {
   },
 
   jwt: {
-    secret: process.env.JWT_SECRET as string,
+    secret: (process.env.JWT_ACCESS_SECRET || process.env.JWT_SECRET) as string,
     expiresIn: process.env.JWT_EXPIRES_IN || '15m',
     refreshSecret: process.env.JWT_REFRESH_SECRET as string,
     refreshExpiresIn: process.env.JWT_REFRESH_EXPIRES_IN || '7d',
@@ -117,8 +117,13 @@ const config: Config = {
 
 // Validate required environment variables
 const validateConfig = () => {
-  const required = ['DATABASE_URL', 'JWT_SECRET', 'JWT_REFRESH_SECRET'];
+  const required = ['DATABASE_URL', 'JWT_REFRESH_SECRET'];
   const missing = required.filter((key) => !process.env[key]);
+
+  // Check for JWT_ACCESS_SECRET or JWT_SECRET (backward compatibility)
+  if (!process.env.JWT_ACCESS_SECRET && !process.env.JWT_SECRET) {
+    missing.push('JWT_ACCESS_SECRET (or JWT_SECRET)');
+  }
 
   if (missing.length > 0) {
     throw new Error(`Missing required environment variables: ${missing.join(', ')}`);
